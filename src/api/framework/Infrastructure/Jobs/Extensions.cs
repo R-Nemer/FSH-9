@@ -1,8 +1,10 @@
-﻿using FSH.Framework.Core.Exceptions;
+﻿using System.Transactions;
+using FSH.Framework.Core.Exceptions;
 using FSH.Framework.Core.Jobs;
 using FSH.Framework.Core.Persistence;
 using FSH.Framework.Infrastructure.Persistence;
 using Hangfire;
+using Hangfire.MySql;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +40,22 @@ internal static class Extensions
 
                 case DbProviders.MSSQL:
                     config.UseSqlServerStorage(dbOptions.ConnectionString);
+                    break;
+
+                case DbProviders.MYSQL:
+                    config.UseSimpleAssemblyNameTypeSerializer()
+                    .UseRecommendedSerializerSettings()
+                    .UseStorage(new MySqlStorage(dbOptions.ConnectionString, new MySqlStorageOptions
+                    {
+                        TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+                        QueuePollInterval = TimeSpan.FromSeconds(15),
+                        JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                        CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                        PrepareSchemaIfNecessary = true,
+                        DashboardJobListLimit = 50000,
+                        TransactionTimeout = TimeSpan.FromMinutes(1),
+                        TablesPrefix = "Hangfire"
+                    }));
                     break;
 
                 default:

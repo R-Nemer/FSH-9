@@ -18,8 +18,16 @@ public static class Extensions
         {
             DbProviders.PostgreSQL => builder.UseNpgsql(connectionString, e =>
                                  e.MigrationsAssembly("FSH.Starter.WebApi.Migrations.PostgreSQL")).EnableSensitiveDataLogging(),
+
             DbProviders.MSSQL => builder.UseSqlServer(connectionString, e =>
                                 e.MigrationsAssembly("FSH.Starter.WebApi.Migrations.MSSQL")),
+
+            DbProviders.MYSQL => builder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 29)), e =>
+                                e.MigrationsAssembly("FSH.Starter.WebApi.Migrations.MYSQL"))
+                                .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
+                                .EnableSensitiveDataLogging()
+                                .EnableDetailedErrors(),
+
             _ => throw new InvalidOperationException($"DB Provider {dbProvider} is not supported."),
         };
     }
