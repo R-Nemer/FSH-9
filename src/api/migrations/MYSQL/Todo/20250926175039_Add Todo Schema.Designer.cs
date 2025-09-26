@@ -12,15 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSH.Starter.WebApi.Migrations.MYSQL.Todo
 {
     [DbContext(typeof(TodoDbContext))]
-    [Migration("20250925061654_Add Identity Schema")]
-    partial class AddIdentitySchema
+    [Migration("20250926175039_Add Todo Schema")]
+    partial class AddTodoSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("todo")
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
@@ -67,7 +66,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Todo
 
                     b.HasKey("Id");
 
-                    b.ToTable("Todos", "todo");
+                    b.ToTable("Todos");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });

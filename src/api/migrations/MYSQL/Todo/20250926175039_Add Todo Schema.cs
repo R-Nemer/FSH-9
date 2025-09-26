@@ -6,20 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSH.Starter.WebApi.Migrations.MYSQL.Todo
 {
     /// <inheritdoc />
-    public partial class AddIdentitySchema : Migration
+    public partial class AddTodoSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "todo");
-
             migrationBuilder.AlterDatabase()
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Todos",
-                schema: "todo",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -47,8 +43,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Todo
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Todos",
-                schema: "todo");
+                name: "Todos");
         }
     }
 }

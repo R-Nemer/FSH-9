@@ -17,7 +17,6 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Todo
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("todo")
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
@@ -64,7 +63,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Todo
 
                     b.HasKey("Id");
 
-                    b.ToTable("Todos", "todo");
+                    b.ToTable("Todos");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });

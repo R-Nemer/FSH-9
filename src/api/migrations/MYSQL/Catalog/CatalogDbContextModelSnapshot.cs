@@ -17,7 +17,6 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("catalog")
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
@@ -63,7 +62,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", "catalog");
+                    b.ToTable("Brands");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -116,7 +115,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", "catalog");
+                    b.ToTable("Products");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });

@@ -59,7 +59,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
 
                     b.HasKey("Id");
 
-                    b.ToTable("AuditTrails", "identity");
+                    b.ToTable("AuditTrails", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -97,7 +97,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims", "identity");
+                    b.ToTable("RoleClaims", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -133,7 +133,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("Roles", "identity");
+                    b.ToTable("Roles", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -226,7 +226,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("Users", "identity");
+                    b.ToTable("Users", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -258,7 +258,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims", "identity");
+                    b.ToTable("UserClaims", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -287,7 +287,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins", "identity");
+                    b.ToTable("UserLogins", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -309,7 +309,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles", "identity");
+                    b.ToTable("UserRoles", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -335,7 +335,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Identity
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens", "identity");
+                    b.ToTable("UserTokens", (string)null);
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
