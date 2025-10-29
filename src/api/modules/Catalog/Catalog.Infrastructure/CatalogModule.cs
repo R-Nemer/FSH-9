@@ -30,6 +30,11 @@ public static class CatalogModule
             brandGroup.MapGetBrandListEndpoint();
             brandGroup.MapBrandUpdateEndpoint();
             brandGroup.MapBrandDeleteEndpoint();
+
+            var anpr_requestsGroup = app.MapGroup("anpr_incomingrequests").WithTags("anpr_incomingrequests");
+            anpr_requestsGroup.MapANPR_IncomingRequestsCreationEndpoint();
+            //brandGroup.MapGetBrandEndpoint();
+            //brandGroup.MapGetBrandListEndpoint();
         }
     }
     public static WebApplicationBuilder RegisterCatalogServices(this WebApplicationBuilder builder)
@@ -41,6 +46,10 @@ public static class CatalogModule
         builder.Services.AddKeyedScoped<IReadRepository<Product>, CatalogRepository<Product>>("catalog:products");
         builder.Services.AddKeyedScoped<IRepository<Brand>, CatalogRepository<Brand>>("catalog:brands");
         builder.Services.AddKeyedScoped<IReadRepository<Brand>, CatalogRepository<Brand>>("catalog:brands");
+
+        builder.Services.AddKeyedScoped<IRepository<ANPR_IncomingRequests>, CatalogRepository<ANPR_IncomingRequests>>("catalog:aNPR_IncomingRequests");
+        builder.Services.AddKeyedScoped<IReadRepository<ANPR_IncomingRequests>, CatalogRepository<ANPR_IncomingRequests>>("catalog:aNPR_IncomingRequests");
+
         return builder;
     }
     public static WebApplication UseCatalogModule(this WebApplication app)

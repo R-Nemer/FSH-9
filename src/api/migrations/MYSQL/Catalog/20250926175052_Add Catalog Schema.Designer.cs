@@ -12,15 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20250925061716_Add Identity Schema")]
-    partial class AddIdentitySchema
+    [Migration("20250926175052_Add Catalog Schema")]
+    partial class AddCatalogSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("catalog")
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
@@ -66,7 +65,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", "catalog");
+                    b.ToTable("Brands");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -119,7 +118,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 
                     b.HasIndex("BrandId");
 
-                    b.ToTable("Products", "catalog");
+                    b.ToTable("Products");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });

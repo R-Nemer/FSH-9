@@ -6,20 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSH.Starter.WebApi.Migrations.MYSQL.Tenant
 {
     /// <inheritdoc />
-    public partial class AddIdentitySchema : Migration
+    public partial class AddTenantSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "tenant");
-
             migrationBuilder.AlterDatabase()
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Tenants",
-                schema: "tenant",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
@@ -45,7 +41,6 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Tenant
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tenants_Identifier",
-                schema: "tenant",
                 table: "Tenants",
                 column: "Identifier",
                 unique: true);
@@ -55,8 +50,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Tenant
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tenants",
-                schema: "tenant");
+                name: "Tenants");
         }
     }
 }

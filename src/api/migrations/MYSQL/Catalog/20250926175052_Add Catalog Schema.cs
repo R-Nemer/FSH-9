@@ -6,20 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 {
     /// <inheritdoc />
-    public partial class AddIdentitySchema : Migration
+    public partial class AddCatalogSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "catalog");
-
             migrationBuilder.AlterDatabase()
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Brands",
-                schema: "catalog",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -44,7 +40,6 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 
             migrationBuilder.CreateTable(
                 name: "Products",
-                schema: "catalog",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -69,7 +64,6 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
                     table.ForeignKey(
                         name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
-                        principalSchema: "catalog",
                         principalTable: "Brands",
                         principalColumn: "Id");
                 })
@@ -77,7 +71,6 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
-                schema: "catalog",
                 table: "Products",
                 column: "BrandId");
         }
@@ -86,12 +79,10 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Catalog
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products",
-                schema: "catalog");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Brands",
-                schema: "catalog");
+                name: "Brands");
         }
     }
 }

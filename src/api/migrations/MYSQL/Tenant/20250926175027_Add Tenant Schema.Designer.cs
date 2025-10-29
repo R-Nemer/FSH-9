@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSH.Starter.WebApi.Migrations.MYSQL.Tenant
 {
     [DbContext(typeof(TenantDbContext))]
-    [Migration("20250925061635_Add Identity Schema")]
-    partial class AddIdentitySchema
+    [Migration("20250926175027_Add Tenant Schema")]
+    partial class AddTenantSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,7 +61,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Tenant
                     b.HasIndex("Identifier")
                         .IsUnique();
 
-                    b.ToTable("Tenants", "tenant");
+                    b.ToTable("Tenants", (string)null);
                 });
 #pragma warning restore 612, 618
         }

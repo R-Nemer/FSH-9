@@ -58,7 +58,7 @@ namespace FSH.Starter.WebApi.Migrations.MYSQL.Tenant
                     b.HasIndex("Identifier")
                         .IsUnique();
 
-                    b.ToTable("Tenants", "tenant");
+                    b.ToTable("Tenants", (string)null);
                 });
 #pragma warning restore 612, 618
         }
